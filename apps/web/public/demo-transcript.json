@@ -1,0 +1,56 @@
+[
+  {
+    "timestamp": 0,
+    "speaker": "rep",
+    "text": "Good morning! Thank you so much for taking the time to meet with me today. I really appreciate it.",
+    "sourceLanguage": "en"
+  },
+  {
+    "timestamp": 4,
+    "speaker": "prospect",
+    "text": "Yes, of course. We're interested in learning more about your solution.",
+    "sourceLanguage": "ja"
+  },
+  {
+    "timestamp": 8,
+    "speaker": "rep",
+    "text": "Excellent! I'd love to tell you about how our platform can help your team increase productivity and reduce costs by up to 40%.",
+    "sourceLanguage": "en"
+  },
+  {
+    "timestamp": 13,
+    "speaker": "prospect",
+    "text": "That's interesting. We would need to consult internally with our management team before moving forward.",
+    "sourceLanguage": "ja"
+  },
+  {
+    "timestamp": 18,
+    "speaker": "rep",
+    "text": "Of course! So, what's your timeline for making a decision on this? Can we aim for a decision by end of week?",
+    "sourceLanguage": "en"
+  },
+  {
+    "timestamp": 23,
+    "speaker": "prospect",
+    "text": "Hmm, we need some time. We would like to discuss this with our wider team and get their input.",
+    "sourceLanguage": "ja"
+  },
+  {
+    "timestamp": 28,
+    "speaker": "rep",
+    "text": "Absolutely, I understand. Let me send you a comprehensive written proposal with all the details, pricing, and implementation plan. You can review it with your colleagues.",
+    "sourceLanguage": "en"
+  },
+  {
+    "timestamp": 34,
+    "speaker": "rep",
+    "text": "How does next week work for a follow-up call after you've had a chance to discuss internally?",
+    "sourceLanguage": "en"
+  },
+  {
+    "timestamp": 39,
+    "speaker": "prospect",
+    "text": "Yes, that would be very helpful. Thank you for your understanding. We will review the proposal carefully.",
+    "sourceLanguage": "ja"
+  }
+]

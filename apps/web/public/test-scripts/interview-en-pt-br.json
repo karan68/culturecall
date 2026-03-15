@@ -1,0 +1,28 @@
+{
+  "scenario": "interviews",
+  "title": "Product Manager Interview – US Interviewer × Brazilian Candidate",
+  "culturePair": "EN ↔ PT-BR",
+  "description": "Alex (US PM) interviews Camila (Brazilian PM candidate). Watch for high-context storytelling, warmth-based rapport, personal anecdotes, and confident self-promotion differences.",
+  "participants": {
+    "rep": "Alex (US Interviewer)",
+    "prospect": "Camila (Brazilian Candidate)"
+  },
+  "messages": [
+    { "role": "rep", "text": "Hi Camila! Great to meet you. So tell me – walk me through your background in product management.", "note": "" },
+    { "role": "prospect", "text": "Hi Alex! So happy to be here. Before I dive in – how are you doing today? I love connecting with people before jumping into the formal stuff!", "note": "🟡 Warmth-first: Brazilians prioritize relational rapport before business" },
+    { "role": "rep", "text": "Ha, I'm great thanks! So tell me about your PM experience.", "note": "" },
+    { "role": "prospect", "text": "Yes of course! So, it started in 2019 when my team was facing this massive problem – we had a product that users loved but kept churning after 3 months. My manager at the time, this brilliant woman named Fernanda, she challenged me to find out why. And I remember calling customers directly – I spent two whole weekends on the phone. What I found completely changed how I think about retention.", "note": "🟡 Rich storytelling – Brazilian communication is context-heavy and narrative" },
+    { "role": "rep", "text": "Interesting! Can you give me the STAR format? Situation, Task, Action, Result?", "note": "🟡 US interviewers prefer structured concise answers" },
+    { "role": "prospect", "text": "Oh yes, of course! Situation: 40% churn at 3-month mark. Task: diagnose and fix it. Action: customer interviews, cohort analysis, rebuilt onboarding in 3 sprints. Result: churn dropped to 18% in 2 quarters. But the real learning was about trust – users didn't trust the product was built for them until we showed them real use cases from their industry.", "note": "✅ Adapted to STAR while preserving the relational insight" },
+    { "role": "rep", "text": "That's great. Now, what would you say is your biggest weakness as a PM?", "note": "" },
+    { "role": "prospect", "text": "Hmm, I would say I sometimes get too emotionally invested in the user's experience. Like, I genuinely care about people, you know? So sometimes I need to balance my empathy with hard data decisions.", "note": "🟡 Self-disclosure is more personal and emotional than typical US 'weakness' answers" },
+    { "role": "rep", "text": "Good self-awareness. How do you handle conflict on a cross-functional team?", "note": "" },
+    { "role": "prospect", "text": "I always start by having a real conversation. Not a Slack message – I mean actually talking. I believe most conflicts come from people not feeling heard. So I ask questions, listen deeply, and make sure everyone feels their perspective was genuinely considered before we decide anything.", "note": "🔴 High-touch conflict resolution – could appear less 'data-driven' to some US tech interviewers" },
+    { "role": "rep", "text": "Okay. What metrics do you prioritize?", "note": "" },
+    { "role": "prospect", "text": "It depends on the stage! For early stage: activation and D7 retention. Growth stage: expansion revenue, NPS, and feature adoption depth. But honestly, I always pair quantitative metrics with qualitative signals – numbers tell you what, conversations tell you why.", "note": "✅ Strong PM answer" },
+    { "role": "rep", "text": "Last question: where do you see yourself in 5 years?", "note": "" },
+    { "role": "prospect", "text": "I want to lead a product team where people genuinely love working together – and ship things that make real differences in people's lives. Right now I'm most excited about the intersection of AI and human behavior. I think there's a generation of products that will fundamentally change how people work and I want to be building them.", "note": "🟢 Aspirational and collaborative – more relationship-oriented than US 'I want to be VP' answer" },
+    { "role": "rep", "text": "Excellent. Any questions for me?", "note": "" },
+    { "role": "prospect", "text": "Yes! Can you tell me about the team culture here? Like, how do people actually work together day-to-day – and what does a great first 90 days look like for a new PM?", "note": "🟢 Culture-first questions are valued and show genuine intent" }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "scenario": "meetings",
+  "title": "Product Roadmap Meeting – US Team × German Engineers",
+  "culturePair": "EN ↔ DE",
+  "description": "Sarah (US PM) runs a roadmap planning meeting with Klaus (German senior engineer). Watch for German directness, disagreement without hedging, data expectations, and precision vs. flexibility tension.",
+  "participants": {
+    "rep": "Sarah (US Product Manager)",
+    "prospect": "Klaus (German Senior Engineer)"
+  },
+  "messages": [
+    { "role": "rep", "text": "Hey team! Thanks for joining. Really excited about this quarter – I think we're going to do some amazing work together. Let's kick off the roadmap review!", "note": "" },
+    { "role": "prospect", "text": "Yes, let us begin. I have reviewed the document and I have several concerns I would like to address.", "note": "🔴 Direct agenda-setting – Germans go straight to issues, no social warm-up" },
+    { "role": "rep", "text": "Absolutely! Let's go through the roadmap and we can flag anything as we go.", "note": "" },
+    { "role": "prospect", "text": "I prefer to address the critical issues first. The timeline for Feature B is unrealistic. We are estimating 3 weeks but the technical requirements clearly show this will take at minimum 6.", "note": "🔴 Blunt timeline challenge – this is not negative, it's German engineering precision" },
+    { "role": "rep", "text": "I appreciate the honesty Klaus. Can you help me understand the technical constraints?", "note": "✅ Good response – asking for explanation, not defending" },
+    { "role": "prospect", "text": "The integration with the legacy API requires a complete schema migration. This is documented in our technical debt backlog from Q3. The estimate of 3 weeks was made without consulting the engineering team. This is a process issue we need to fix.", "note": "🟡 Systematic root cause analysis – Germans identify process failures directly" },
+    { "role": "rep", "text": "Fair point – we should definitely loop in engineering earlier. So for this cycle, should we move Feature B to next quarter?", "note": "" },
+    { "role": "prospect", "text": "That would be the technically correct decision, yes. I would also propose we add a mandatory engineering review step for all timeline estimates going forward.", "note": "🟢 Constructive – solution-oriented after critique" },
+    { "role": "rep", "text": "Great idea. Let me take that as an action item. Now let's talk about Feature A – I think this is going to be a big win for users!", "note": "" },
+    { "role": "prospect", "text": "According to what data?", "note": "🔴 Skepticism – Germans need evidence, not enthusiasm. 'I think' is not sufficient." },
+    { "role": "rep", "text": "We have user research from last quarter showing 67% of users requested this feature. Plus NPS comments mention it frequently.", "note": "✅ Good – providing data to back the claim" },
+    { "role": "prospect", "text": "Good. That is sufficient to prioritize. However, the current specification is incomplete. There are three edge cases not covered in the PRD. I have marked them in the document.", "note": "🟡 Document-first – Germans expect complete specs before building" },
+    { "role": "rep", "text": "Awesome – I'll review your comments and update the PRD by end of week. Does that work for you?", "note": "" },
+    { "role": "prospect", "text": "Yes. End of week is acceptable. I will block time to review it Friday afternoon.", "note": "🟢 Explicit commitment with specific time – Germans are precise about commitments" },
+    { "role": "rep", "text": "Perfect. One more thing – I wanted to get your thoughts on our approach to the Q2 launch. Are you overall feeling good about where we're headed?", "note": "" },
+    { "role": "prospect", "text": "I do not 'feel good' – I will be able to tell you once the timeline is corrected and the spec is complete. At that point we can make a proper assessment.", "note": "🔴 Not emotional validation – Germans evaluate facts, not feelings. This isn't hostility." },
+    { "role": "rep", "text": "That makes total sense Klaus. Thanks for keeping us honest – this kind of rigor is exactly what we need.", "note": "✅ Excellent response – validating the Germanic work style" },
+    { "role": "prospect", "text": "Of course. That is my job.", "note": "🟢 Satisfactory – acknowledgment without over-enthusiasm (normal in DE culture)" }
+  ]
+}

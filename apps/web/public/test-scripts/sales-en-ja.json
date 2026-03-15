@@ -1,0 +1,32 @@
+{
+  "scenario": "sales",
+  "title": "SaaS Sales Call – US Rep × Tokyo Enterprise",
+  "culturePair": "EN ↔ JA",
+  "description": "A US sales rep (Jordan) pitching a project management SaaS to a Japanese enterprise buyer (Tanaka-san). Watch for indirect rejection signals, consensus language, and relationship-building patterns.",
+  "participants": {
+    "rep": "Jordan (US Sales Rep)",
+    "prospect": "Tanaka (Tokyo Enterprise Buyer)"
+  },
+  "messages": [
+    { "role": "rep", "text": "Good morning, Tanaka-san! Thank you so much for making time today. I'm really excited to show you what our platform can do for your team.", "note": "" },
+    { "role": "prospect", "text": "Good morning, Jordan-san. Yes, we are happy to listen.", "note": "Neutral – polite opener" },
+    { "role": "rep", "text": "So I looked at your company's website and I think we can help you reduce project delays by 40%. Can I ask – what's your biggest bottleneck right now?", "note": "" },
+    { "role": "prospect", "text": "Hmm… that is an interesting question. We have many considerations at this stage.", "note": "🔴 Indirect deflection – they won't state problems directly" },
+    { "role": "rep", "text": "I understand. Let me show you a quick demo of the dashboard. I think you'll find it very intuitive.", "note": "" },
+    { "role": "prospect", "text": "Yes, please go ahead.", "note": "" },
+    { "role": "rep", "text": "Great! So here's the Kanban view – your team can drag tasks, set due dates, and tag dependencies. What do you think?", "note": "" },
+    { "role": "prospect", "text": "It is very… comprehensive. I see there are many features.", "note": "🟡 Non-committal – 'comprehensive' is diplomatic, not enthusiastic" },
+    { "role": "rep", "text": "Yes exactly! And we can turn off any features you don't need. Would this work for your team?", "note": "" },
+    { "role": "prospect", "text": "We would need to consult with our team and understand the implications more carefully.", "note": "🔴 Consensus requirement – Japanese enterprise approval process" },
+    { "role": "rep", "text": "Of course! How many stakeholders would be involved in this decision?", "note": "" },
+    { "role": "prospect", "text": "There are several departments. It is a process that takes time. We hope you understand.", "note": "🔴 Timeline softening – do not push for urgency" },
+    { "role": "rep", "text": "Absolutely, I completely understand. Would it help if I prepared a detailed written proposal you could share internally?", "note": "✅ Good adaptation to Japanese decision process" },
+    { "role": "prospect", "text": "Yes, I think that would be very helpful. A written document would make it easier for everyone to review.", "note": "🟢 Positive signal – written materials are preferred" },
+    { "role": "rep", "text": "Perfect. I'll send a full proposal with pricing tiers, case studies from similar companies, and an FAQ document. Does end of this week work?", "note": "" },
+    { "role": "prospect", "text": "Yes, that timing is acceptable.", "note": "" },
+    { "role": "rep", "text": "Wonderful. And would it be all right if we scheduled a follow-up call next week? I want to make sure I can answer any questions your team may have.", "note": "" },
+    { "role": "prospect", "text": "Let me check with my colleagues and we will confirm.", "note": "🔴 'Let me check' = consensus required, don't push" },
+    { "role": "rep", "text": "Of course – no rush at all. I'll include my direct contact in the proposal so anyone on your team can reach out anytime.", "note": "" },
+    { "role": "prospect", "text": "That is very considerate of you. Thank you, Jordan-san.", "note": "🟢 Relationship + respect signal" }
+  ]
+}
