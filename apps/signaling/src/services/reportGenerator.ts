@@ -1,0 +1,272 @@
+import PDFDocument from "pdfkit";
+import { Readable } from "stream";
+
+export interface CallData {
+  callId: string;
+  startTime: number;
+  endTime: number;
+  useCase: "sales" | "interviews" | "meetings";
+  culturePair: string;
+  transcript: Array<{
+    speaker: "rep" | "prospect";
+    text: string;
+    timestamp: number;
+  }>;
+  bilingualTranscript?: Array<{
+    speaker: "rep" | "prospect";
+    text: string;
+    translatedText: string;
+    timestamp: number;
+  }>;
+}
+
+export interface InsightData {
+  observation: string;
+  frameworkKey: string;
+  culturalFramework: string;
+  response: string;
+  severity: "low" | "medium" | "high";
+  timestamp: number;
+}
+
+export async function generatePDFReport(
+  callData: CallData,
+  insights: InsightData[]
+): Promise<Buffer> {
+  return new Promise((resolve, reject) => {
+    const doc = new PDFDocument({
+      size: "A4",
+      margins: {
+        top: 40,
+        bottom: 40,
+        left: 40,
+        right: 40,
+      },
+    });
+
+    const chunks: Buffer[] = [];
+
+    doc.on("data", (chunk) => chunks.push(chunk));
+    doc.on("end", () => resolve(Buffer.concat(chunks)));
+    doc.on("error", reject);
+
+    // Header
+    doc.fontSize(24).font("Helvetica-Bold").text("CultureCall Analysis Report", {
+      align: "center",
+    });
+    doc.moveDown(0.5);
+
+    // Call Metadata
+    const callDuration = ((callData.endTime - callData.startTime) / 1000).toFixed(
+      1
+    );
+    const callDate = new Date(callData.startTime).toLocaleDateString();
+
+    doc.fontSize(11).font("Helvetica");
+    doc
+      .text(`Call Type: ${callData.useCase.charAt(0).toUpperCase() + callData.useCase.slice(1)}`, {
+        continued: true,
+      })
+      .text(` | Date: ${callDate}`, { continued: true })
+      .text(` | Duration: ${callDuration}s`);
+    doc
+      .text(`Language Pair: ${callData.culturePair}`, { continued: true })
+      .text(` | Call ID: ${callData.callId.slice(0, 8)}`);
+
+    doc.moveDown(1);
+
+    // Summary Statistics
+    doc.fontSize(12).font("Helvetica-Bold").text("Call Summary");
+    doc.fontSize(10).font("Helvetica");
+
+    const frictionScore = Math.min(10, insights.length);
+    const highRiskInsights = insights.filter((i) => i.severity === "high");
+    const trustMoments = insights.filter((i) => i.severity === "low");
+
+    doc.text(`• Total Insights: ${insights.length}`);
+    doc.text(`• High-Risk Moments: ${highRiskInsights.length}`);
+    doc.text(`• Trust Moments (Low Risk): ${trustMoments.length}`);
+    doc.text(`• Friction Score: ${frictionScore}/10`);
+
+    doc.moveDown(1);
+
+    // Key Insights Section
+    if (insights.length > 0) {
+      doc.fontSize(12).font("Helvetica-Bold").text("Key Insights");
+      doc.fontSize(9).font("Helvetica");
+
+      insights.slice(0, 5).forEach((insight, idx) => {
+        const severityIcon =
+          insight.severity === "high" ? "🔴" : insight.severity === "medium" ? "🟡" : "🔵";
+
+        doc.text(`${idx + 1}. [${severityIcon}] ${insight.observation}`);
+        doc.text(`   Framework: ${insight.culturalFramework}`, {
+          indent: 20,
+        });
+        doc.text(`   Response: ${insight.response}`, {
+          indent: 20,
+        });
+        doc.moveDown(0.3);
+      });
+    }
+
+    doc.moveDown(1);
+
+    // Recommendations Section
+    doc.fontSize(12).font("Helvetica-Bold").text("Coaching Points");
+    doc.fontSize(9).font("Helvetica");
+
+    const recommendations = [
+      "Review identified cultural patterns from this call",
+      `Focus on ${callData.culturePair} communication best practices`,
+      "Schedule follow-up discussion within 24 hours",
+      "Practice identified coaching points before next call",
+    ];
+
+    recommendations.forEach((rec, idx) => {
+      doc.text(`${idx + 1}. ${rec}`);
+    });
+
+    doc.moveDown(1);
+
+    // Bilingual Transcript Section (powered by Lingo.dev localizeChat)
+    if (callData.bilingualTranscript && callData.bilingualTranscript.length > 0) {
+      doc.addPage();
+      doc.fontSize(12).font("Helvetica-Bold").text("Bilingual Transcript");
+      doc.fontSize(8).font("Helvetica").fillColor("#888888").text(
+        `Original + ${callData.culturePair.split("-")[1]?.toUpperCase() || "translated"} via Lingo.dev`
+      );
+      doc.fillColor("#000000");
+      doc.moveDown(0.5);
+      doc.fontSize(9).font("Helvetica");
+
+      callData.bilingualTranscript.forEach((line) => {
+        const speaker = line.speaker === "rep" ? "REP" : "PROSPECT";
+        doc.font("Helvetica-Bold").text(`[${speaker}]`, { continued: true });
+        doc.font("Helvetica").text(` ${line.text}`);
+        if (line.translatedText && line.translatedText !== line.text) {
+          doc.font("Helvetica-Oblique").text(`  → ${line.translatedText}`, {
+            indent: 20,
+          });
+        }
+        doc.moveDown(0.2);
+      });
+
+      doc.moveDown(1);
+    }
+
+    // Footer
+    doc.fontSize(8).font("Helvetica").text("Generated by CultureCall", {
+      align: "center",
+    });
+    doc.text(`${new Date().toLocaleString()}`, {
+      align: "center",
+    });
+
+    doc.end();
+  });
+}
+
+export function createPDFStream(
+  callData: CallData,
+  insights: InsightData[]
+): any {
+  const doc = new PDFDocument({
+    size: "A4",
+    margins: {
+      top: 40,
+      bottom: 40,
+      left: 40,
+      right: 40,
+    },
+  });
+
+  // Header
+  doc.fontSize(24).font("Helvetica-Bold").text("CultureCall Analysis Report", {
+    align: "center",
+  });
+  doc.moveDown(0.5);
+
+  // Call Metadata
+  const callDuration = ((callData.endTime - callData.startTime) / 1000).toFixed(1);
+  const callDate = new Date(callData.startTime).toLocaleDateString();
+
+  doc.fontSize(11).font("Helvetica");
+  doc
+    .text(`Call Type: ${callData.useCase.charAt(0).toUpperCase() + callData.useCase.slice(1)}`, {
+      continued: true,
+    })
+    .text(` | Date: ${callDate}`, { continued: true })
+    .text(` | Duration: ${callDuration}s`);
+  doc
+    .text(`Language Pair: ${callData.culturePair}`, { continued: true })
+    .text(` | Call ID: ${callData.callId.slice(0, 8)}`);
+
+  doc.moveDown(1);
+
+  // Summary Statistics
+  doc.fontSize(12).font("Helvetica-Bold").text("Call Summary");
+  doc.fontSize(10).font("Helvetica");
+
+  const frictionScore = Math.min(10, insights.length);
+  const highRiskInsights = insights.filter((i) => i.severity === "high");
+  const trustMoments = insights.filter((i) => i.severity === "low");
+
+  doc.text(`• Total Insights: ${insights.length}`);
+  doc.text(`• High-Risk Moments: ${highRiskInsights.length}`);
+  doc.text(`• Trust Moments (Low Risk): ${trustMoments.length}`);
+  doc.text(`• Friction Score: ${frictionScore}/10`);
+
+  doc.moveDown(1);
+
+  // Key Insights Section
+  if (insights.length > 0) {
+    doc.fontSize(12).font("Helvetica-Bold").text("Key Insights");
+    doc.fontSize(9).font("Helvetica");
+
+    insights.slice(0, 5).forEach((insight, idx) => {
+      const severityIcon =
+        insight.severity === "high" ? "🔴" : insight.severity === "medium" ? "🟡" : "🔵";
+
+      doc.text(`${idx + 1}. [${severityIcon}] ${insight.observation}`);
+      doc.text(`   Framework: ${insight.culturalFramework}`, {
+        indent: 20,
+      });
+      doc.text(`   Response: ${insight.response}`, {
+        indent: 20,
+      });
+      doc.moveDown(0.3);
+    });
+  }
+
+  doc.moveDown(1);
+
+  // Recommendations Section
+  doc.fontSize(12).font("Helvetica-Bold").text("Coaching Points");
+  doc.fontSize(9).font("Helvetica");
+
+  const recommendations = [
+    "Review identified cultural patterns from this call",
+    `Focus on ${callData.culturePair} communication best practices`,
+    "Schedule follow-up discussion within 24 hours",
+    "Practice identified coaching points before next call",
+  ];
+
+  recommendations.forEach((rec, idx) => {
+    doc.text(`${idx + 1}. ${rec}`);
+  });
+
+  doc.moveDown(1);
+
+  // Footer
+  doc.fontSize(8).font("Helvetica").text("Generated by CultureCall", {
+    align: "center",
+  });
+  doc.text(`${new Date().toLocaleString()}`, {
+    align: "center",
+  });
+
+  doc.end();
+
+  return doc;
+}

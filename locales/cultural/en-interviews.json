@@ -1,0 +1,74 @@
+{
+  "pt-high-context-storytelling": {
+    "trigger": ["let me tell you about my experience", "so what happened was", "I learned this from"],
+    "observation": "Candidate is using narrative and contextual examples",
+    "culturalFramework": "Brazilian culture is high-context: communication through stories, examples, and personal context. Direct fact-dumps are seen as cold. Candidates build understanding through narrative.",
+    "tacticResponse": "Let them finish their story. The core competency answer is embedded in the narrative. Ask follow-ups to extract specific metrics or outcomes from the story.",
+    "severity": "low",
+    "repAction": "LISTEN",
+    "useCase": "interviews"
+  },
+  "pt-warmth-authenticity": {
+    "trigger": ["I'm passionate about this", "it's important to me personally", "I care about the team"],
+    "observation": "Candidate emphasizes personal values and emotional investment",
+    "culturalFramework": "Brazilian culture values warmth, authenticity, and personal connection. Candidates openly express passion and personal motivations. This signals honesty and engagement, not unprofessionalism.",
+    "tacticResponse": "Appreciate the authenticity. This is a strength. Ask how these values translate to work outcomes and team collaboration.",
+    "severity": "low",
+    "repAction": "APPRECIATE",
+    "useCase": "interviews"
+  },
+  "pt-relationship-building": {
+    "trigger": ["I worked with great people", "the team dynamic was important", "relationships with colleagues matter"],
+    "observation": "Candidate emphasizes team relationships and workplace culture",
+    "culturalFramework": "Brazilian business culture prioritizes relationships and collaboration. Success is measured not just by role performance but by team harmony and mutual respect.",
+    "tacticResponse": "Ask about specific collaboration examples. Probe their approach to team dynamics. This is a legitimate hiring criterion in Brazilian context.",
+    "severity": "medium",
+    "repAction": "EXPLORE",
+    "useCase": "interviews"
+  },
+  "pt-indirect-disagreement": {
+    "trigger": ["that's an interesting idea, but...", "I see your point, and also...", "perhaps we could consider"],
+    "observation": "Candidate is disagreeing politely without direct confrontation",
+    "culturalFramework": "Like Japanese culture, Brazilian communication can be indirect to preserve harmony. 'But' after agreement often means significant pushback, not minor note.",
+    "tacticResponse": "Listen for the substance after 'but'. Don't treat it as minor concern. They may be signaling serious disagreement while being respectful.",
+    "severity": "medium",
+    "repAction": "LISTEN",
+    "useCase": "interviews"
+  },
+  "pt-enthusiasm-expressiveness": {
+    "trigger": ["That's awesome!", "I'm excited about this!", "This is amazing!"],
+    "observation": "Candidate is expressive and enthusiastic",
+    "culturalFramework": "Brazilian culture is expressive and warm. Enthusiasm is authentic and culturally normal. Don't mistake it for lack of professionalism or inexperience.",
+    "tacticResponse": "Engage with their energy. Ask substantive questions about their experience. Channel their enthusiasm toward specific examples.",
+    "severity": "low",
+    "repAction": "ENGAGE",
+    "useCase": "interviews"
+  },
+  "pt-family-context": {
+    "trigger": ["my family came from", "I grew up in", "my background is", "my family values"],
+    "observation": "Candidate shares family background or personal context",
+    "culturalFramework": "Brazilian culture deeply values family and personal background. Sharing personal context is normal and expected, not inappropriate. It's part of authentic communication.",
+    "tacticResponse": "Listen respectfully. Personal context often informs work values and approach. Ask how their background shapes their professional goals.",
+    "severity": "low",
+    "repAction": "LISTEN",
+    "useCase": "interviews"
+  },
+  "pt-flexibility-adaptability": {
+    "trigger": ["I can adapt", "I'm flexible", "I can work with different approaches", "I can learn"],
+    "observation": "Candidate emphasizes flexibility and adaptability",
+    "culturalFramework": "Brazilian business culture values flexibility and ability to thrive in changing environments. Adaptability is a core Brazilian strength due to market volatility.",
+    "tacticResponse": "Ask for specific examples of adaptation. This is valuable. Probe their comfort with ambiguity and changing priorities.",
+    "severity": "low",
+    "repAction": "EXPLORE",
+    "useCase": "interviews"
+  },
+  "pt-authority-respect": {
+    "trigger": ["my manager recommended this", "my supervisor supports this", "leadership suggested this"],
+    "observation": "Candidate references authority figures and approval",
+    "culturalFramework": "Brazilian culture has some respect for hierarchy, though less formal than Asia. Referencing authority isn't lack of initiative; it's normal deference.",
+    "tacticResponse": "Ask what their personal contribution/thinking was. Encourage ownership of ideas while not dismissing the collaborative/hierarchical context.",
+    "severity": "low",
+    "repAction": "PROBE",
+    "useCase": "interviews"
+  }
+}

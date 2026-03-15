@@ -1,0 +1,74 @@
+{
+  "ja-soft-rejection": {
+    "trigger": ["that's interesting", "we'll need to consider", "we need to consult internally", "let me check with the team"],
+    "observation": "Prospect signals withdrawal from decision process",
+    "culturalFramework": "Japanese business culture: indirect communication. Phrases like 'that's interesting' often mask disagreement or lack of interest. Direct confrontation is avoided to preserve harmony (wa).",
+    "tacticResponse": "Stop pushing. Pivot to sending written materials. Suggest: 'I'll send a summary document. You can review with your team. When would a follow-up call work?'",
+    "severity": "high",
+    "repAction": "PAUSE",
+    "useCase": "sales"
+  },
+  "ja-silence-processing": {
+    "trigger": "5+ seconds of silence after you speak",
+    "observation": "Prospect is thinking/processing, not disengaged",
+    "culturalFramework": "High-context communication in Japanese business. Silence is valued for thoughtful consideration. Rushing to fill silence is seen as disrespectful.",
+    "tacticResponse": "Do NOT fill the silence. Wait 3-4 more seconds. Then ask open-ended: 'What are your thoughts?' or 'Please share your feedback.'",
+    "severity": "medium",
+    "repAction": "WAIT",
+    "useCase": "sales"
+  },
+  "ja-formal-address": {
+    "trigger": "using honorifics or formal titles",
+    "observation": "You're demonstrating respect for hierarchy and structure",
+    "culturalFramework": "Japanese culture values formal address and respect for position. Using proper titles (san, sama) and formal language builds trust and credibility.",
+    "tacticResponse": "Continue this approach. Maintain formal tone throughout. Avoid casual Western familiarity.",
+    "severity": "low",
+    "repAction": "CONTINUE",
+    "useCase": "sales"
+  },
+  "ja-group-consensus": {
+    "trigger": ["we need to align internally", "consensus is important", "we prefer to decide as a team"],
+    "observation": "Prospect emphasizes collective decision-making",
+    "culturalFramework": "Japanese business: decisions require consensus (nemawashi). Individual agreement is insufficient. Multiple stakeholders must approve.",
+    "tacticResponse": "Ask: 'Who else needs to be involved in this decision?' Offer to present to the full committee. Allow extra time for internal alignment.",
+    "severity": "medium",
+    "repAction": "EXPAND",
+    "useCase": "sales"
+  },
+  "ja-written-confirmation": {
+    "trigger": ["send us the details", "email the proposal", "put it in writing"],
+    "observation": "Prospect prefers documentation over verbal commitment",
+    "culturalFramework": "Japanese business culture values written documentation as formal commitment. Verbal agreements are preliminary; writing is binding and trustworthy.",
+    "tacticResponse": "Prepare detailed written proposal immediately. Include all terms, timeline, and next steps. Follow up in writing after verbal discussion.",
+    "severity": "medium",
+    "repAction": "DOCUMENT",
+    "useCase": "sales"
+  },
+  "ja-timing-respect": {
+    "trigger": ["let's reconnect next month", "we'll circle back later", "timing isn't right now"],
+    "observation": "Prospect is not rejecting but deferring",
+    "culturalFramework": "Japanese business respects timing and patience. Pushing immediately is seen as aggressive. Acceptance of deferred timelines shows respect.",
+    "tacticResponse": "Honor the timeline. Send a polite reminder email on the agreed date. Do not follow up sooner; it signals disrespect.",
+    "severity": "low",
+    "repAction": "PLAN",
+    "useCase": "sales"
+  },
+  "ja-personal-relationship": {
+    "trigger": ["meeting you in person", "building relationship", "trust is important"],
+    "observation": "Prospect values personal connection before business",
+    "culturalFramework": "High-context culture: relationships precede transactions. Trust must be built through face-to-face interaction and consistent follow-up.",
+    "tacticResponse": "Offer in-person meeting. Find common ground personally. Be patient with the relationship-building phase.",
+    "severity": "medium",
+    "repAction": "CONNECT",
+    "useCase": "sales"
+  },
+  "ja-price-sensitivity": {
+    "trigger": ["price is a concern", "budget is limited", "can you be more competitive"],
+    "observation": "Prospect is price-conscious but not necessarily rejecting",
+    "culturalFramework": "Japanese buyers negotiate carefully to maximize value. Price discussion is normal; they expect room for negotiation and added value.",
+    "tacticResponse": "Acknowledge cost sensitivity. Offer added value (training, support, customization) rather than discounts. Show ROI carefully with data.",
+    "severity": "medium",
+    "repAction": "VALUE",
+    "useCase": "sales"
+  }
+}

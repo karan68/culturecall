@@ -1,0 +1,74 @@
+{
+  "de-direct-honesty": {
+    "trigger": ["that won't work", "I disagree", "that's not realistic", "we need to be honest"],
+    "observation": "Colleague is being direct and critical",
+    "culturalFramework": "German communication style values directness and honesty. Blunt criticism is not aggression—it signals high engagement and respect. Germans see sugar-coating as disrespectful.",
+    "tacticResponse": "Don't take offense. This is a sign of professional respect. Respond with equally direct reasoning. Address the specific concern head-on.",
+    "severity": "low",
+    "repAction": "ENGAGE",
+    "useCase": "meetings"
+  },
+  "de-structured-agenda": {
+    "trigger": ["what's the agenda?", "let's stick to the plan", "we're off-topic"],
+    "observation": "Team prefers structured, time-boxed discussions",
+    "culturalFramework": "German business culture values clear structure, written agendas, and time management. Deviation from agenda is seen as disrespectful of participants' time.",
+    "tacticResponse": "Provide written agenda in advance. Stick to time limits. If a new topic arises, propose adding it to next meeting's agenda.",
+    "severity": "medium",
+    "repAction": "ORGANIZE",
+    "useCase": "meetings"
+  },
+  "de-evidence-based": {
+    "trigger": ["show me the data", "what's your evidence?", "prove it"],
+    "observation": "Team demands facts and evidence before deciding",
+    "culturalFramework": "German engineering/business culture is evidence-driven. Decisions require data, testing, and logical proof. Intuition or soft arguments are insufficient.",
+    "tacticResponse": "Come prepared with concrete data, case studies, test results. Be specific. Avoid speculation. Show your methodology clearly.",
+    "severity": "high",
+    "repAction": "PRESENT",
+    "useCase": "meetings"
+  },
+  "de-decision-clarity": {
+    "trigger": ["are we deciding today?", "what's the decision?", "who decides?"],
+    "observation": "Team wants clear decision ownership and timeline",
+    "culturalFramework": "German culture expects clarity on decision authority and deadlines. Ambiguous responsibility or indefinite timelines create frustration.",
+    "tacticResponse": "Clearly state: Who decides? What's the deadline? Make decisions in the meeting or schedule next decision point explicitly.",
+    "severity": "high",
+    "repAction": "CLARIFY",
+    "useCase": "meetings"
+  },
+  "de-efficiency-focus": {
+    "trigger": ["let's move forward", "we're spending too much time here", "make a decision"],
+    "observation": "Team is action-oriented and values efficiency",
+    "culturalFramework": "German business culture prioritizes efficiency and rapid execution. Long deliberations are seen as inefficient. Decide and move forward quickly.",
+    "tacticResponse": "Keep discussions focused and time-bound. Come to conclusions. If more time is needed, explicitly schedule it separately.",
+    "severity": "medium",
+    "repAction": "DECIDE",
+    "useCase": "meetings"
+  },
+  "de-process-compliance": {
+    "trigger": ["we need to follow process", "what's the protocol?", "is this the right way?"],
+    "observation": "Team is checking process compliance",
+    "culturalFramework": "German culture respects established processes and rules. Following proper procedure is a sign of professionalism and organizational integrity.",
+    "tacticResponse": "Align with established processes. If suggesting a different approach, justify it clearly and get agreement before proceeding.",
+    "severity": "medium",
+    "repAction": "COMPLY",
+    "useCase": "meetings"
+  },
+  "de-precision-language": {
+    "trigger": ["what exactly do you mean?", "can you be more specific?", "clarify that"],
+    "observation": "Team is seeking precise, unambiguous language",
+    "culturalFramework": "German culture values precise language and clear definitions. Vagueness is seen as unprofessional or evasive.",
+    "tacticResponse": "Use exact terms. Define abbreviations. Avoid idioms or ambiguous phrases. Be clinically precise.",
+    "severity": "medium",
+    "repAction": "PRECISE",
+    "useCase": "meetings"
+  },
+  "de-boundary-respect": {
+    "trigger": ["that's outside my scope", "that's not my responsibility", "the team lead decides that"],
+    "observation": "Team member is clarifying role boundaries",
+    "culturalFramework": "German organizational culture has clear role definitions and accountability. Respecting boundaries shows professionalism and prevents scope creep.",
+    "tacticResponse": "Respect the stated boundary. Route the issue to the appropriate person/team. Avoid asking someone to exceed their role.",
+    "severity": "low",
+    "repAction": "ROUTE",
+    "useCase": "meetings"
+  }
+}

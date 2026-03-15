@@ -1,0 +1,19 @@
+{
+  "glossary_mappings": {
+    "ja_soft_rejection": "Prospect is signaling polite disengagement through indirect communication. In Japanese business culture, phrases like 'that's interesting' often mask disagreement. Pushing further will damage trust. Send written summary instead.",
+    "ja_silence_processing": "Silence in Japanese business conversations is valuable thinking time, not disengagement. Wait 3-4 seconds before speaking. Interrupting silence is disrespectful.",
+    "de_direct_honesty": "German colleagues value direct criticism as a sign of respect and high engagement. Blunt feedback is not aggression. Respond with equally direct reasoning and address concerns head-on.",
+    "de_structured_agenda": "German business culture prioritizes structured, time-boxed discussions with clear agendas in advance. Deviation from the plan is seen as disrespectful of everyone's time.",
+    "de_evidence_based": "German teams demand concrete data and evidence before making decisions. Technical proof matters more than intuition. Come prepared with case studies and test results.",
+    "pt_high_context": "Brazilian candidates communicate through stories and personal context. Core competencies are embedded in narratives, not stated directly. Listen to the full story to understand their actual skills.",
+    "pt_warmth": "Brazilian culture values authentic personal expression in professional settings. Emotional investment and passion are signs of genuine engagement, not unprofessionalism.",
+    "pt_relationship_focus": "For Brazilian organizations, team relationships and workplace culture are as important as individual performance. Success is collaborative and measured by team harmony."
+  },
+  "cultural_framework_references": {
+    "high_context": "High-context communication relies on implied meaning, context, and what's left unsaid. Common in Asia (Japan), parts of Latin America (Brazil), and the Middle East.",
+    "direct_communication": "Direct communication values explicit, clear statements. Common in Germanic cultures (Germany), Scandinavia, and North America.",
+    "harmony_preservation": "Some cultures (Japan, to some extent Brazil) prioritize group harmony and avoid direct confrontation. Indirect communication preserves relationships.",
+    "individualism_vs_collectivism": "Individualistic cultures (US, Germany) emphasize personal achievement and clear role definition. Collectivist cultures (Japan) emphasize group consensus and harmony.",
+    "power_distance": "Some cultures have greater respect for hierarchy and authority (Japan, Brazil), while others flatten hierarchies (Germany, Scandinavia)."
+  }
+}
