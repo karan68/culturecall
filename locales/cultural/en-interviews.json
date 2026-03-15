@@ -1,6 +1,6 @@
 {
   "pt-high-context-storytelling": {
-    "trigger": ["let me tell you about my experience", "so what happened was", "I learned this from"],
+    "trigger": ["let me tell you about my experience", "so what happened was", "I learned this from", "it started in", "my manager", "challenged me to", "there was a", "calling customers directly"],
     "observation": "Candidate is using narrative and contextual examples",
     "culturalFramework": "Brazilian culture is high-context: communication through stories, examples, and personal context. Direct fact-dumps are seen as cold. Candidates build understanding through narrative.",
     "tacticResponse": "Let them finish their story. The core competency answer is embedded in the narrative. Ask follow-ups to extract specific metrics or outcomes from the story.",
@@ -9,7 +9,7 @@
     "useCase": "interviews"
   },
   "pt-warmth-authenticity": {
-    "trigger": ["I'm passionate about this", "it's important to me personally", "I care about the team"],
+    "trigger": ["I'm passionate about this", "it's important to me personally", "I care about the team", "I genuinely care", "so happy to be here", "how are you doing", "emotionally invested"],
     "observation": "Candidate emphasizes personal values and emotional investment",
     "culturalFramework": "Brazilian culture values warmth, authenticity, and personal connection. Candidates openly express passion and personal motivations. This signals honesty and engagement, not unprofessionalism.",
     "tacticResponse": "Appreciate the authenticity. This is a strength. Ask how these values translate to work outcomes and team collaboration.",
@@ -18,7 +18,7 @@
     "useCase": "interviews"
   },
   "pt-relationship-building": {
-    "trigger": ["I worked with great people", "the team dynamic was important", "relationships with colleagues matter"],
+    "trigger": ["I worked with great people", "the team dynamic was important", "relationships with colleagues matter", "real conversation", "people not feeling heard", "not a slack message"],
     "observation": "Candidate emphasizes team relationships and workplace culture",
     "culturalFramework": "Brazilian business culture prioritizes relationships and collaboration. Success is measured not just by role performance but by team harmony and mutual respect.",
     "tacticResponse": "Ask about specific collaboration examples. Probe their approach to team dynamics. This is a legitimate hiring criterion in Brazilian context.",

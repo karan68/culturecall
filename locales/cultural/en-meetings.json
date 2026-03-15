@@ -1,7 +1,7 @@
 {
   "de-direct-honesty": {
-    "trigger": ["that won't work", "I disagree", "that's not realistic", "we need to be honest"],
-    "observation": "Colleague is being direct and critical",
+    "trigger": ["that won't work", "I disagree", "that's not realistic", "we need to be honest", "unrealistic", "several concerns", "I have concerns", "process issue", "not covered", "incomplete", "not consulting engineering", "without consulting"],
+    "observation": "Colleague is being direct and critical — a sign of engagement, not hostility",
     "culturalFramework": "German communication style values directness and honesty. Blunt criticism is not aggression—it signals high engagement and respect. Germans see sugar-coating as disrespectful.",
     "tacticResponse": "Don't take offense. This is a sign of professional respect. Respond with equally direct reasoning. Address the specific concern head-on.",
     "severity": "low",
@@ -18,7 +18,7 @@
     "useCase": "meetings"
   },
   "de-evidence-based": {
-    "trigger": ["show me the data", "what's your evidence?", "prove it"],
+    "trigger": ["show me the data", "what's your evidence?", "prove it", "according to what data", "what data", "is sufficient to prioritize", "user research"],
     "observation": "Team demands facts and evidence before deciding",
     "culturalFramework": "German engineering/business culture is evidence-driven. Decisions require data, testing, and logical proof. Intuition or soft arguments are insufficient.",
     "tacticResponse": "Come prepared with concrete data, case studies, test results. Be specific. Avoid speculation. Show your methodology clearly.",
@@ -54,7 +54,7 @@
     "useCase": "meetings"
   },
   "de-precision-language": {
-    "trigger": ["what exactly do you mean?", "can you be more specific?", "clarify that"],
+    "trigger": ["what exactly do you mean?", "can you be more specific?", "clarify that", "edge cases", "specification is incomplete", "technically correct", "6 weeks minimum", "schema migration"],
     "observation": "Team is seeking precise, unambiguous language",
     "culturalFramework": "German culture values precise language and clear definitions. Vagueness is seen as unprofessional or evasive.",
     "tacticResponse": "Use exact terms. Define abbreviations. Avoid idioms or ambiguous phrases. Be clinically precise.",

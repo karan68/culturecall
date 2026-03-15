@@ -1,8 +1,8 @@
 {
   "ja-soft-rejection": {
-    "trigger": ["that's interesting", "we'll need to consider", "we need to consult internally", "let me check with the team"],
-    "observation": "Prospect signals withdrawal from decision process",
-    "culturalFramework": "Japanese business culture: indirect communication. Phrases like 'that's interesting' often mask disagreement or lack of interest. Direct confrontation is avoided to preserve harmony (wa).",
+    "trigger": ["that's interesting", "interesting question", "we'll need to consider", "we need to consult", "need to consult", "consult with our team", "let me check with", "many considerations", "considerations at this stage", "need to discuss", "takes time", "process that takes time"],
+    "observation": "Prospect signals indirect deferral — likely nemawashi in progress",
+    "culturalFramework": "Japanese business culture: indirect communication. Phrases like 'that's interesting' or 'many considerations' often mask disagreement or lack of readiness. Direct confrontation is avoided to preserve harmony (wa).",
     "tacticResponse": "Stop pushing. Pivot to sending written materials. Suggest: 'I'll send a summary document. You can review with your team. When would a follow-up call work?'",
     "severity": "high",
     "repAction": "PAUSE",
@@ -18,7 +18,7 @@
     "useCase": "sales"
   },
   "ja-formal-address": {
-    "trigger": "using honorifics or formal titles",
+    "trigger": ["-san", "-sama", "tanaka-san", "thank you for making time", "thank you for taking the time"],
     "observation": "You're demonstrating respect for hierarchy and structure",
     "culturalFramework": "Japanese culture values formal address and respect for position. Using proper titles (san, sama) and formal language builds trust and credibility.",
     "tacticResponse": "Continue this approach. Maintain formal tone throughout. Avoid casual Western familiarity.",
@@ -27,16 +27,16 @@
     "useCase": "sales"
   },
   "ja-group-consensus": {
-    "trigger": ["we need to align internally", "consensus is important", "we prefer to decide as a team"],
-    "observation": "Prospect emphasizes collective decision-making",
-    "culturalFramework": "Japanese business: decisions require consensus (nemawashi). Individual agreement is insufficient. Multiple stakeholders must approve.",
+    "trigger": ["we need to align internally", "consensus is important", "we prefer to decide as a team", "consult with our team", "check with my colleagues", "check with our colleagues", "we will confirm", "need to discuss this with our team"],
+    "observation": "Prospect emphasizes collective decision-making (nemawashi)",
+    "culturalFramework": "Japanese business: decisions require consensus (nemawashi). Individual agreement is insufficient. Multiple stakeholders must approve via the ringi process.",
     "tacticResponse": "Ask: 'Who else needs to be involved in this decision?' Offer to present to the full committee. Allow extra time for internal alignment.",
     "severity": "medium",
     "repAction": "EXPAND",
     "useCase": "sales"
   },
   "ja-written-confirmation": {
-    "trigger": ["send us the details", "email the proposal", "put it in writing"],
+    "trigger": ["send us the details", "email the proposal", "put it in writing", "written proposal", "written document", "very helpful", "share internally"],
     "observation": "Prospect prefers documentation over verbal commitment",
     "culturalFramework": "Japanese business culture values written documentation as formal commitment. Verbal agreements are preliminary; writing is binding and trustworthy.",
     "tacticResponse": "Prepare detailed written proposal immediately. Include all terms, timeline, and next steps. Follow up in writing after verbal discussion.",
@@ -45,8 +45,8 @@
     "useCase": "sales"
   },
   "ja-timing-respect": {
-    "trigger": ["let's reconnect next month", "we'll circle back later", "timing isn't right now"],
-    "observation": "Prospect is not rejecting but deferring",
+    "trigger": ["let's reconnect next month", "we'll circle back later", "timing isn't right now", "follow-up call next week", "follow up next week", "end of week"],
+    "observation": "Pacing signal — respect the deferred timeline",
     "culturalFramework": "Japanese business respects timing and patience. Pushing immediately is seen as aggressive. Acceptance of deferred timelines shows respect.",
     "tacticResponse": "Honor the timeline. Send a polite reminder email on the agreed date. Do not follow up sooner; it signals disrespect.",
     "severity": "low",

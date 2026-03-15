@@ -1,12 +1,20 @@
 import Groq from "groq-sdk";
 
-// Initialize Groq client (only used if GROQ_ENABLED=true)
+// Initialize Groq client lazily to avoid ESM import-hoisting race with dotenv
 let groq: Groq | null = null;
-if (process.env.GROQ_ENABLED === "true" && process.env.GROQ_API_KEY) {
-  groq = new Groq({
-    apiKey: process.env.GROQ_API_KEY,
-  });
-  console.log("✓ Groq LLM initialized with API key");
+let groqInitDone = false;
+
+function getGroqClient(): Groq | null {
+  if (!groqInitDone) {
+    groqInitDone = true;
+    if (process.env.GROQ_ENABLED === "true" && process.env.GROQ_API_KEY) {
+      groq = new Groq({
+        apiKey: process.env.GROQ_API_KEY,
+      });
+      console.log("✓ Groq LLM initialized with API key");
+    }
+  }
+  return groq;
 }
 
 export interface CulturalAnalysisRequest {
@@ -25,7 +33,8 @@ export interface CulturalAnalysisResponse {
 export async function analyzeCulturalContext(
   request: CulturalAnalysisRequest
 ): Promise<CulturalAnalysisResponse> {
-  if (!groq) {
+  const client = getGroqClient();
+  if (!client) {
     return {
       insight: "Call analyzed using rule-based cultural matching",
       severity: "medium",
@@ -52,16 +61,19 @@ Respond ONLY with valid JSON in this format:
 Identify cultural patterns. Respond ONLY with JSON.`;
 
   try {
-    const message = await (groq as any).chat.completions.create({
-      model: "mixtral-8x7b-32768",
+    const message = await client.chat.completions.create({
+      model: "llama3-8b-8192",
       max_tokens: 300,
       messages: [
+        {
+          role: "system",
+          content: systemPrompt,
+        },
         {
           role: "user",
           content: userPrompt,
         },
       ],
-      system: systemPrompt,
     });
 
     const content = message.choices[0]?.message?.content || "";
@@ -95,7 +107,8 @@ export async function generateCoachingAdvice(
   insights: string[],
   useCase: string
 ): Promise<string[]> {
-  if (!groq || insights.length === 0) {
+  const client = getGroqClient();
+  if (!client || insights.length === 0) {
     return [
       "Review the cultural patterns identified during the call",
       "Practice active listening for non-verbal cues",
@@ -111,8 +124,8 @@ ${insightsSummary}
 Generate 3-4 coaching points. Be concise and actionable. Return as JSON: {"points": ["point1", "point2", ...]}`;
 
   try {
-    const message = await (groq as any).chat.completions.create({
-      model: "mixtral-8x7b-32768",
+    const message = await client.chat.completions.create({
+      model: "llama3-8b-8192",
       max_tokens: 200,
       messages: [
         {

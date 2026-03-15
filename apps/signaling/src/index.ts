@@ -190,8 +190,50 @@ app.post("/api/report/generate", express.json(), async (req, res) => {
   }
 });
 
-// Load demo transcript
-function loadDemoTranscript(): TranscriptLine[] {
+// Load demo transcript for the given scenario
+function loadDemoTranscript(scenario?: string): TranscriptLine[] {
+  // Try scenario-specific test script first
+  if (scenario) {
+    const scriptMap: Record<string, string> = {
+      sales: "sales-en-ja.json",
+      interviews: "interview-en-pt-br.json",
+      meetings: "meeting-en-de.json",
+    };
+    const scriptFile = scriptMap[scenario];
+    if (scriptFile) {
+      // Try relative to workspace root (apps/web/public/test-scripts/)
+      const scriptPaths = [
+        path.join(process.cwd(), "..", "web", "public", "test-scripts", scriptFile),
+        path.join(process.cwd(), "public", "test-scripts", scriptFile),
+      ];
+      for (const sp of scriptPaths) {
+        if (fs.existsSync(sp)) {
+          try {
+            const data = JSON.parse(fs.readFileSync(sp, "utf-8"));
+            if (data.messages && Array.isArray(data.messages)) {
+              const langMap: Record<string, string> = {
+                sales: "ja",
+                interviews: "pt-BR",
+                meetings: "de",
+              };
+              const prospectLang = langMap[scenario] || "en";
+              console.log(`✓ Loaded scenario transcript: ${scriptFile} (${data.messages.length} lines)`);
+              return data.messages.map((msg: { role: string; text: string }, i: number) => ({
+                timestamp: i * 4,
+                speaker: msg.role === "rep" ? "rep" : "prospect",
+                text: msg.text,
+                sourceLanguage: msg.role === "rep" ? "en" : prospectLang,
+              }));
+            }
+          } catch (e) {
+            console.warn(`Failed to parse ${sp}:`, e);
+          }
+        }
+      }
+    }
+  }
+
+  // Fallback: try generic demo-transcript.json
   try {
     const filePath = path.join(process.cwd(), "public", "demo-transcript.json");
     if (fs.existsSync(filePath)) {
@@ -280,7 +322,7 @@ io.on("connection", (socket: Socket) => {
       socket.emit("call-started", { callId, timestamp: Date.now() });
 
     // Load demo transcript and stream it
-    const transcript = loadDemoTranscript();
+    const transcript = loadDemoTranscript(data.scenario);
 
     // Stream transcript with insights
     for (let i = 0; i < transcript.length; i++) {
@@ -296,11 +338,50 @@ io.on("connection", (socket: Socket) => {
         callId,
       });
 
-      // Generate insight if it's a prospect line
-      if (line.speaker === "prospect") {
+      // Generate insight for each line
+      {
         const glossary = getGlossary(data.scenario);
 
-        // First try rule-based matching (fast, deterministic)
+        // FTA detection on rep lines
+        if (line.speaker === "rep") {
+          const ftaPatterns: { pattern: RegExp; label: string; theory: string; fix: string; severity: "low" | "medium" | "high" }[] = [
+            {
+              pattern: /\b(?:(?:I|we)\s+(?:need|require|must have|demand)\b.{0,30}?\b(?:by\s+(?:monday|tuesday|wednesday|thursday|friday|today|tomorrow|end of (?:day|week))|asap|immediately|right now|urgently)\b|(?:(?:need|require|must have)\s+(?:this|it|a decision|an answer)\s+(?:asap|immediately|right now|urgently)))/i,
+              label: "Urgency imposition detected",
+              theory: "Negative Face Threat (Brown & Levinson): Direct deadline pressure threatens autonomy.",
+              fix: 'Soften to: "What timeline works for your team?"',
+              severity: "high",
+            },
+            {
+              pattern: /\b(yes or no|simple question|just (say|tell me|answer)|give me a straight answer)\b/i,
+              label: "Direct confrontation style",
+              theory: "Negative Face Threat: Demanding binary clarity suppresses high-context indirect communication.",
+              fix: 'Use: "Help me understand your perspective" instead.',
+              severity: "high",
+            },
+          ];
+          for (const fta of ftaPatterns) {
+            if (fta.pattern.test(line.text)) {
+              const ftaInsight = {
+                id: `fta-${session.insightCount++}`,
+                timestamp: line.timestamp,
+                speaker: line.speaker,
+                observation: fta.label,
+                culturalFramework: fta.theory,
+                suggestedResponse: fta.fix,
+                severity: fta.severity,
+                repAction: fta.fix,
+                useCase: data.scenario,
+                source: "politeness",
+              };
+              socket.emit("insight", ftaInsight);
+              console.log(`🎭 [${callId}] FTA detected: ${fta.label}`);
+              break;
+            }
+          }
+        }
+
+        // Rule-based glossary matching
         const ruleMatch = searchGlossary(line.text, glossary);
 
         if (ruleMatch) {
@@ -336,7 +417,6 @@ io.on("connection", (socket: Socket) => {
         }
       }
     }
-
       // End call
       console.log(`✓ Call ended: ${callId} (${session.insightCount} insights)`);
       socket.emit("call-ended", { callId, totalLines: session.transcript.length });
@@ -505,13 +585,58 @@ io.on("connection", (socket: Socket) => {
             });
             console.log(`🌐 [${data.roomId}] Translation: ${sourceLocale}→${targetLocale}${detected ? ` (detected: ${detected})` : ""}`);
           }
+
+          // ── Post-translation glossary matching ──────────────────────────
+          // If the original message was non-English, match glossary triggers
+          // against the English translation so cultural cues aren't missed.
+          if (translated && sourceLocale !== "en" && targetLocale === "en") {
+            try {
+              const glossary = getGlossary(room.scenario);
+              const ruleMatch = searchGlossary(translated, glossary);
+              if (ruleMatch) {
+                const insight = {
+                  id: `insight-${room.insightCount++}`,
+                  messageId: message.id,
+                  timestamp: message.timestamp,
+                  speaker: data.role,
+                  senderName: data.name,
+                  observation: ruleMatch.observation,
+                  culturalFramework: ruleMatch.culturalFramework,
+                  suggestedResponse: ruleMatch.tacticResponse,
+                  severity: ruleMatch.severity,
+                  repAction: ruleMatch.repAction,
+                  useCase: room.scenario,
+                };
+                io.to(data.roomId).emit("insight", insight);
+
+                const prospectLocale = (scenarioLocales[room.scenario] || { prospect: "en" }).prospect;
+                if (prospectLocale !== "en") {
+                  translateInsight(insight, prospectLocale)
+                    .then((t) => {
+                      if (t) {
+                        io.to(data.roomId).emit("insight-translation", {
+                          insightId: insight.id,
+                          locale: prospectLocale,
+                          ...t,
+                        });
+                      }
+                    })
+                    .catch(() => {});
+                }
+
+                console.log(`💡 [${data.roomId}] Translated-text insight: ${ruleMatch.severity} - ${ruleMatch.observation.slice(0, 60)}`);
+              }
+            } catch (e) {
+              console.error("Post-translation glossary error:", e);
+            }
+          }
         })
         .catch((err) => console.error("Translation error (non-blocking):", err));
 
       // ── Politeness / Face-Threat Act Detection (Brown & Levinson) ──────────
       const ftaPatterns: { pattern: RegExp; label: string; theory: string; fix: string; severity: "low" | "medium" | "high" }[] = [
         {
-          pattern: /\b(need|must|have to|require|demand|by (monday|tuesday|wednesday|thursday|friday|today|tomorrow|end of (day|week)|asap|immediately|right now))\b/i,
+          pattern: /\b(?:(?:I|we)\s+(?:need|require|must have|demand)\b.{0,30}?\b(?:by\s+(?:monday|tuesday|wednesday|thursday|friday|today|tomorrow|end of (?:day|week))|asap|immediately|right now|urgently)\b|(?:(?:need|require|must have)\s+(?:this|it|a decision|an answer)\s+(?:asap|immediately|right now|urgently)))/i,
           label: "Urgency imposition detected",
           theory: "Negative Face Threat (Brown & Levinson): Direct deadline pressure threatens autonomy.",
           fix: 'Soften to: "What timeline works for your team?"',
@@ -645,7 +770,9 @@ io.on("connection", (socket: Socket) => {
             useCase: room.scenario as "sales" | "interviews" | "meetings",
           })
             .then((llmResult) => {
-              if (llmResult && llmResult.insight) {
+              const fallbackPhrases = ["Call analyzed using rule-based", "Analysis complete", "Monitor for cultural cues", "Continue conversation"];
+              const isFallback = fallbackPhrases.some(p => llmResult.insight.includes(p));
+              if (llmResult && llmResult.insight && !isFallback) {
                 const llmInsight = {
                   id: `llm-${room.insightCount++}`,
                   messageId: message.id,
@@ -661,9 +788,12 @@ io.on("connection", (socket: Socket) => {
                   source: "groq",
                 };
                 io.to(data.roomId).emit("insight", llmInsight);
+                console.log(`🤖 [${data.roomId}] Groq insight: ${llmResult.insight.slice(0, 80)}`);
+              } else if (isFallback) {
+                console.log(`🤖 [${data.roomId}] Groq returned fallback, skipped`);
               }
             })
-            .catch((err) => console.error("Groq analysis error (non-blocking):", err));
+            .catch((err) => console.error(`🤖 [${data.roomId}] Groq analysis error:`, err.message || err));
         }
       } catch (err) {
         console.error("Analysis error:", err);
