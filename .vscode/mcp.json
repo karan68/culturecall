@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "lingo-dev": {
+      "command": "npx",
+      "args": ["-y", "lingo.dev@latest", "mcp"],
+      "env": {}
+    }
+  }
+}
